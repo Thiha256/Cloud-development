@@ -7,9 +7,13 @@ import "./index.css";
 function App() {
   return (
     <div className="container">
-      <h1 className="title">Thiha's Pizza</h1>
+      <header className="header">
+        <h1>Thiha's Pizza</h1>
+      </header>
 
-      <div className="pizzas">
+      <main className="menu">
+        <h2>Our Menu</h2>
+        <div className="pizzas">
         <Pizza
           image="/spinaci.jpg"
           name="Spinach Pizza"
@@ -25,7 +29,8 @@ function App() {
           name="Prosciutto Pizza"
           ingredients="Tomato, mozzarella, prosciutto"
         />
-      </div>
+        </div>
+      </main>
 
       <Footer />
     </div>
@@ -36,17 +41,19 @@ function Pizza(props) {
   const [ordered, setOrdered] = useState(false);
 
   return (
-    <div className="pizza-box">
+    <div className="pizza">
       <img src={props.image} alt={props.name} />
-      <h2>{props.name}</h2>
-      <p>{props.ingredients}</p>
+      <div>
+        <h3>{props.name}</h3>
+        <p>{props.ingredients}</p>
 
-      <Button
-        className={ordered ? "btn btn-done" : "btn"}
-        onClick={() => setOrdered((order) => !order)}
-      >
-        {ordered ? "Ordered ✓" : "Order"}
-      </Button>
+        <Button
+          className="btn"
+          onClick={() => setOrdered((order) => !order)}
+        >
+          {ordered ? "Ordered ✓" : "Order"}
+        </Button>
+      </div>
     </div>
   );
 }
@@ -64,7 +71,10 @@ function Footer() {
   const isOpen = currentHour >= 10 && currentHour < 22;
 
   return (
-    <footer className="footer">
+    <footer
+      className="footer"
+      style={{ color: "white", backgroundColor: "black", padding: "1rem 2rem", borderRadius: "1rem" }}
+    >
       {isOpen ? "We're currently open" : "Sorry, we're closed"}
     </footer>
   );
